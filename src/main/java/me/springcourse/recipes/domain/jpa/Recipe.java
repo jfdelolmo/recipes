@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@ToString(exclude = {"ingredientList", "categories"})
 public class Recipe {
 
     @Id
@@ -41,8 +42,8 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
-    @OneToMany(mappedBy = "recipe")
-    private List<Ingredient> ingredientList = new ArrayList<>();
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name =  "RECIPE_CATEGORY", joinColumns =
@@ -56,7 +57,7 @@ public class Recipe {
 
     public Recipe addIngredient(Ingredient ingredient){
         ingredient.setRecipe(this);
-        this.ingredientList.add(ingredient);
+        this.ingredients.add(ingredient);
         return this;
     }
 

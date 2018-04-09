@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
+@ToString(exclude =  {"recipe"})
 @EqualsAndHashCode(exclude = {"recipe"})
 public class Ingredient {
 
@@ -35,3 +36,4 @@ public class Ingredient {
     }
 
 }
+

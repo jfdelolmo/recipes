@@ -24,21 +24,141 @@
         <div class="col-md-6 offset-md-3">
             <div class="card border-info">
                 <div class="card-header bg-info">
-                    <h5 class="card-title" th:text="recipe.description">Recipe description here!</h5>
+                    <h5 class="card-title" th:text="${recipe.description}">Recipe description here!</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <h5>Categories:</h5>
+                            <strong>Categories:</strong>
                         </div>
+
                         <div class="col-md-9">
-                            <ul th:each="category : ${recipe.categories}">
-                                <li th:text="${category.categoryName}">Dummy category</li>
-                            </ul>
+
+                            <nav class="navbar">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item" th:each="category : ${recipe.categories}">
+                                        <output class="nav-link" th:text="${category.categoryName}">Cat1</output>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Prep time:</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <output th:text="${recipe.prepTime}"> minutes</output>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Cook time:</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <output th:text="${recipe.cookTime}"> minutes</output>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Servings:</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <output th:text="${recipe.servings}"> minutes</output>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Difficulty:</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <output th:text="${recipe.difficulty}"> minutes</output>
                         </div>
 
                     </div>
-                 </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Source:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            <a th:href="${recipe.url}" th:text="${recipe.source}">Source</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ingredients -->
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border-info">
+                <div class="card-header bg-info">
+                    <h5 class="card-title">Ingredients</h5>
+                </div>
+                <div class="card-body">
+                    <ul th:each="ingredient : ${recipe.ingredients}">
+                        <li >
+                            <output th:text="${ingredient.ammount}">ammount</output>
+                            <output th:text="${ingredient.uom.description}">uom</output>
+                            <output th:text="${ingredient.description}">description</output>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Directions -->
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border-info">
+                <div class="card-header bg-info">
+                    <h5 class="card-title">Directions</h5>
+                </div>
+                <div class="card-body">
+                    <p th:text="${recipe.directions}">Directions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notes -->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border-info">
+                <div class="card-header bg-info">
+                    <h5 class="card-title">Notes</h5>
+                </div>
+                <div class="card-body">
+                    <p th:text="${recipe.notes.recipeNotes}">Notes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px;text-align: center">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border-info">
+                <div class="card-header bg-info">
+                    <h5 class="card-title">
+                        <a href="#"  th:href="@{'/'}">Back to list of recipes.</a>
+                    </h5>
+
+                </div>
             </div>
         </div>
     </div>
